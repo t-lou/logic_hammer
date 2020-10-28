@@ -6,7 +6,7 @@ root.title('Logic Hammer')
 
 # input part for the formula
 scroll_bar_src = tkinter.Scrollbar(root)
-text_field_src = tkinter.Text(root, height=50, width=120)
+text_field_src = tkinter.Text(root, height=50, width=80)
 
 scroll_bar_src.pack(side=tkinter.LEFT, fill=tkinter.Y)
 text_field_src.pack(side=tkinter.LEFT, fill=tkinter.Y)
