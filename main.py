@@ -10,7 +10,10 @@ def main():
 
     args = parser.parse_args()
 
-    hammer = LogicHammer(args.path_in)
+    with open(args.path_in) as fi:
+        content = fi.read()
+
+    hammer = LogicHammer(content)
     if args.path_out is None:
         print(hammer)
     else:

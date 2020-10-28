@@ -83,15 +83,8 @@ class Node(object):
 
 
 class LogicHammer(object):
-    def __init__(self, path: str):
-        self._data = self.load_file(path)
-        self._parsed = self.parse(self._data)
-
-    @staticmethod
-    def load_file(path: str):
-        with open(path) as fi:
-            content = fi.read()
-        return content
+    def __init__(self, content: str):
+        self._parsed = self.parse(content)
 
     @staticmethod
     def parse(data: str):
