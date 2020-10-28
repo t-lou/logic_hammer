@@ -3,7 +3,7 @@ import unittest
 from logic_hammer import LogicHammer
 
 
-class TestStringMethods(unittest.TestCase):
+class TestHammered(unittest.TestCase):
     @staticmethod
     def load_file(path: str):
         with open(path) as fi:
@@ -11,39 +11,43 @@ class TestStringMethods(unittest.TestCase):
         return content
 
     def test1(self):
-        self.assertEqual(str(LogicHammer(self.load_file('tests/most_stupid'))),
-                         '''hello world''')
+        path = 'tests/most_stupid'
+        expectation = '''hello world'''
+        self.assertEqual(str(LogicHammer(self.load_file(path))), expectation)
 
     def test2(self):
-        self.assertEqual(
-            str(LogicHammer(self.load_file('tests/second_most_stupid'))),
-            '''AND
+        path = 'tests/second_most_stupid'
+        expectation = '''AND
   hello world
-  world''')
+  world'''
+        self.assertEqual(str(LogicHammer(self.load_file(path))), expectation)
 
     def test3(self):
-        self.assertEqual(
-            str(LogicHammer(self.load_file('tests/third_most_stupid'))), '''OR
+        path = 'tests/third_most_stupid'
+        expectation = '''OR
   AND
     hello
     world
-  c''')
+  c'''
+        self.assertEqual(str(LogicHammer(self.load_file(path))), expectation)
 
     def test4(self):
-        self.assertEqual(str(LogicHammer(self.load_file('tests/not_clever'))),
-                         '''NOT
-  clever''')
+        path = 'tests/not_clever'
+        expectation = '''NOT
+  clever'''
+        self.assertEqual(str(LogicHammer(self.load_file(path))), expectation)
 
     def test5(self):
-        self.assertEqual(
-            str(LogicHammer(self.load_file('tests/all_stupid'))), '''AND
+        path = 'tests/all_stupid'
+        expectation = '''AND
   NOT
     clever
   OR
     stupid
     silly silly silly
   confused plus
-  hungry''')
+  hungry'''
+        self.assertEqual(str(LogicHammer(self.load_file(path))), expectation)
 
 
 if __name__ == '__main__':

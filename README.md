@@ -1,8 +1,9 @@
-For reading long logic logically:
+# For reading long logic logically
 
 ```
 ((NOT clever) AND (stupid OR (silly silly silly)) AND (confused plus) AND hungry)
 ```
+
 ->
 
 ```
@@ -15,3 +16,7 @@ AND
   confused plus
   hungry
 ```
+
+# Use
+
+copy the formula or type it on the left, then click enter

@@ -4,6 +4,7 @@ from logic_hammer import LogicHammer
 root = tkinter.Tk()
 root.title('Logic Hammer')
 
+# input part for the formula
 scroll_bar_src = tkinter.Scrollbar(root)
 text_field_src = tkinter.Text(root, height=50, width=120)
 
@@ -13,6 +14,7 @@ text_field_src.pack(side=tkinter.LEFT, fill=tkinter.Y)
 scroll_bar_src.config(command=text_field_src.yview)
 text_field_src.config(yscrollcommand=scroll_bar_src.set)
 
+# output part for the visualization
 scroll_bar_dst = tkinter.Scrollbar(root)
 text_field_dst = tkinter.Text(root, height=50, width=120)
 
@@ -23,14 +25,14 @@ scroll_bar_dst.config(command=text_field_dst.yview)
 text_field_dst.config(yscrollcommand=scroll_bar_dst.set)
 
 
+# convert the input formula to structured components
 def exec(event):
-    content = text_field_src.get('1.0', tkinter.END).strip()
+    content = text_field_src.get('1.0', tkinter.END)
     content = content.replace('\n', '')
     text_field_src.delete('1.0', tkinter.END)
     text_field_src.insert(tkinter.END, content)
-    result = str(LogicHammer(content))
     text_field_dst.delete('1.0', tkinter.END)
-    text_field_dst.insert(tkinter.END, result)
+    text_field_dst.insert(tkinter.END, str(LogicHammer(content)))
 
 
 root.bind('<Return>', exec)

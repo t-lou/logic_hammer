@@ -26,8 +26,7 @@ class Node(object):
                         if level == 0:
                             id_end = i
                             break
-                    assert id_end > 0, 'unbalanced quote in {}'.format(
-                        self.content)
+                    assert id_end > 0, f'unbalanced brackets in {self.content}'
                     this = self.content[1:id_end]
                     self.content = self.content[(id_end + 1):]
                 else:
@@ -46,23 +45,18 @@ class Node(object):
         self._depth = depth
 
         elems = list(self._Parser(data))
-        assert len(elems) >= 1, 'data not read from "{}"'.format(data)
+        assert len(elems) >= 1, f'data not read from "{data}"'
         while len(elems) == 1 and self.has_element_operator(elems[0]):
             elems = list(self._Parser(elems[0]))
+        length = len(elems)
         self._operator = None
         if elems[0] in kOpUnary:
-            assert len(
-                elems
-            ) == 2, 'unary operator can only have one element: {}'.format(
-                elems)
+            assert length == 2, f'unary operator can only have one element: {elems}'
             self._operator = elems[0]
             self._elements = [Node(elems[1], depth + 1)]
-        elif len(elems) > 1 and elems[1] in kOpBinary:
-            assert len(
-                elems
-            ) % 2 == 1, 'number of elements should be uneven: {}'.format(elems)
-            assert len(set(
-                elems[1::2])) == 1, 'mixed operations: {}'.format(elems)
+        elif length > 1 and elems[1] in kOpBinary:
+            assert length % 2 == 1, f'number of elements should be uneven: {elems}'
+            assert len(set(elems[1::2])) == 1, f'mixed operations: {elems}'
             self._operator = elems[1]
             self._elements = [Node(elem, depth + 1) for elem in elems[::2]]
         else:
@@ -77,19 +71,15 @@ class Node(object):
 
     @staticmethod
     def has_element_operator(data: str):
-        return any(' {} '.format(op) in data
-                   for op in kOpBinary) or any('{} '.format(op) in data
+        return any(f' {op} ' in data
+                   for op in kOpBinary) or any(f'{op} ' in data
                                                for op in kOpUnary)
 
 
 class LogicHammer(object):
     def __init__(self, content: str):
-        self._parsed = self.parse(content)
-
-    @staticmethod
-    def parse(data: str):
-        assert bool(data)
-        return Node(data)
+        assert bool(content)
+        self._parsed = Node(content)
 
     def __str__(self):
         return str(self._parsed)
