@@ -7,7 +7,7 @@ class TestHammered(unittest.TestCase):
     @staticmethod
     def load_file(path: str):
         with open(path) as fi:
-            content = fi.read()
+            content = fi.read().strip()
         return content
 
     def test1(self):
