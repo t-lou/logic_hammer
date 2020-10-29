@@ -60,6 +60,8 @@ class Node(object):
             self._operator = elems[1]
             self._elements = [Node(elem, depth + 1) for elem in elems[::2]]
         else:
+            assert not any(self.has_element_operator(elem)
+                           for elem in elems), f'unclean formula {elems}'
             self._element = kSep.join(elems)
 
     def __str__(self):

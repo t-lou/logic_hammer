@@ -32,7 +32,11 @@ def exec(event):
     text_field_src.delete('1.0', tkinter.END)
     text_field_src.insert(tkinter.END, content)
     text_field_dst.delete('1.0', tkinter.END)
-    text_field_dst.insert(tkinter.END, str(LogicHammer(content)))
+    try:
+        formatted = str(LogicHammer(content))
+    except AssertionError as ex:
+        formatted = str(ex)
+    text_field_dst.insert(tkinter.END, formatted)
 
 
 root.bind('<Return>', exec)
