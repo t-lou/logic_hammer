@@ -20,3 +20,17 @@ AND
 # Use
 
 copy the formula or type it on the left, then click enter
+
+# Demos
+
+when it works
+
+![demo](https://github.com/t-lou/logic_hammer/blob/master/screenshot/correct.png)
+
+when it is wrong or unclear
+
+![demo](https://github.com/t-lou/logic_hammer/blob/master/screenshot/wrong.png)
+
+![demo](https://github.com/t-lou/logic_hammer/blob/master/screenshot/missing.png)
+
+![demo](https://github.com/t-lou/logic_hammer/blob/master/screenshot/extra.png)
